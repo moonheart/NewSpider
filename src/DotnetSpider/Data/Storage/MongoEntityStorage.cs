@@ -13,7 +13,7 @@ namespace DotnetSpider.Data.Storage
     /// </summary>
     public class MongoEntityStorage : StorageBase
     {
-        private readonly MongoClient _client;
+        private readonly IMongoClient _client;
 
         private readonly ConcurrentDictionary<string, IMongoDatabase> _cache =
             new ConcurrentDictionary<string, IMongoDatabase>();
@@ -21,6 +21,11 @@ namespace DotnetSpider.Data.Storage
         public MongoEntityStorage(string connectionString)
         {
             _client = new MongoClient(connectionString);
+        }
+
+        internal MongoEntityStorage(IMongoClient mongoClient)
+        {
+            _client = mongoClient;
         }
 
         protected override async Task<DataFlowResult> Store(DataFlowContext context)
