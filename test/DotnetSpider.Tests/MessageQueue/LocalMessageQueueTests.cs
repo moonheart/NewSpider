@@ -37,7 +37,7 @@ namespace DotnetSpider.Tests.MessageQueue
                     await mq.PublishAsync("topic", "a");
                     await Task.Delay(100);
                 }
-            }).ConfigureAwait(false);
+            }).ConfigureAwait(false).GetAwaiter();
             await Task.Delay(3000);
             mq.Unsubscribe("topic");
             while (i < 100)

@@ -24,8 +24,8 @@ namespace DotnetSpider.Tests.Data.Parser
         {
             //TODO
         }
-        
-        
+
+
         /// <summary>
         /// 检测在实体类上面添加 FollowSelector 是否生效
         /// </summary>
@@ -42,10 +42,10 @@ namespace DotnetSpider.Tests.Data.Parser
         /// </summary>
         [Fact(DisplayName = "EnvironmentSelector")]
         public void EnvironmentSelector()
-        {    
+        {
             //TODO
         }
-        
+
         /// <summary>
         /// 检测配置在属性上的 Formatter 是否有被调用
         /// 1. 单个
@@ -53,10 +53,10 @@ namespace DotnetSpider.Tests.Data.Parser
         /// </summary>
         [Fact(DisplayName = "Formatters")]
         public void Formatters()
-        {    
+        {
             //TODO
-            
         }
+
         /// <summary>
         /// 测试实体类的解析是否正确
         /// </summary>
@@ -171,8 +171,13 @@ namespace DotnetSpider.Tests.Data.Parser
         [EntitySelector(Expression = "//li[@class='gl-item']/div[contains(@class,'j-sku-item')]")]
         private class Product : EntityBase<Product>
         {
+#pragma warning disable 649
             public string AAA;
-            private string bb;
+#pragma warning restore 649
+
+#pragma warning disable 169
+            private string _bb;
+#pragma warning restore 169
 
             [ValueSelector(Expression = "cat", Type = SelectorType.Enviroment)]
             public string CategoryName { get; set; }

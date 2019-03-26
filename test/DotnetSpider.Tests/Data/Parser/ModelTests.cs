@@ -38,7 +38,7 @@ namespace DotnetSpider.Tests.Data.Parser
             Assert.Equal(SelectorType.Css, model.Selector.Type);
             Assert.Equal("exp", model.Selector.Expression);
             Assert.Equal(10, model.Take);
-            Assert.Equal(false, model.TakeFromHead);
+            Assert.False(model.TakeFromHead);
         }
 
         [EntitySelector(Expression = "exp", Type = SelectorType.Css, Take = 10, TakeFromHead = false,
