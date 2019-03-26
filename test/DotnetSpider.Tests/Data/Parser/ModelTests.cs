@@ -1,3 +1,7 @@
+using DotnetSpider.Data.Parser;
+using DotnetSpider.Data.Parser.Attribute;
+using DotnetSpider.Data.Storage.Model;
+using DotnetSpider.Selector;
 using Xunit;
 
 namespace DotnetSpider.Tests.Data.Parser
@@ -10,7 +14,12 @@ namespace DotnetSpider.Tests.Data.Parser
         [Fact(DisplayName = "ModelTypeName")]
         public void ModelTypeName()
         {
-            // TODO
+            var model = new Model<ModelType>();
+            Assert.Equal(model.TypeName, typeof(ModelType).FullName);
+        }
+
+        private class ModelType : EntityBase<ModelType>
+        {
         }
 
         /// <summary>
@@ -24,8 +33,20 @@ namespace DotnetSpider.Tests.Data.Parser
         [Fact(DisplayName = "EntitySelector")]
         public void EntitySelector()
         {
-            // TODO
+            var model = new Model<Entity>();
+
+            Assert.Equal(SelectorType.Css, model.Selector.Type);
+            Assert.Equal("exp", model.Selector.Expression);
+            Assert.Equal(10, model.Take);
+            Assert.False(model.TakeFromHead);
         }
+
+        [EntitySelector(Expression = "exp", Type = SelectorType.Css, Take = 10, TakeFromHead = false,
+            Arguments = "args")]
+        private class Entity : EntityBase<Entity>
+        {
+        }
+
 
         /// <summary>
         /// 测试实体模型上的 ValueSelector 有没有正确解析到 Model 对象中
