@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using DotnetSpider.Data;
 using DotnetSpider.Data.Storage;
 using DotnetSpider.Data.Storage.Model;
 using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using Moq;
 using Xunit;
